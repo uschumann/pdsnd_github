@@ -10,6 +10,9 @@ Investigation of bikeshare data from 3 US cities.
 ### Description
 In order to practice with R programming, several data
 investigations have been applied.
+Based on 3 given files, data was merged into a single
+file. Data preparation done in R. 3 Visualizations
+created to answer 3 interesting questions.
 
 ### Files used
 chicago.csv
