@@ -2,6 +2,7 @@
 
 ### Date created
 December 20th, 2021
+Updated on Dec 21st, 2021
 
 ### Project Title
 Investigation of bikeshare data from 3 US cities.
@@ -18,3 +19,6 @@ washington.csv
 ### Credits
 Data and ideas for analysis given by the Udacity
 Nanodegree program "Programming with R".
+
+### Documentation
+New documentation branch created
