@@ -1,19 +1,24 @@
-# ---------------
+# --------- R Script for bikeshare data analysis ------
+# load further R packages
 library(dplyr)
 library (ggplot2)
 library(lubridate)
 
+# Define and read the Working Directory
 setwd("C:\\Users\\U2150\\Downloads")
 getwd()
 
+# Read Data files
 ny <- read.csv("new-york-city.csv")
 ch <- read.csv("chicago.csv")
 wa <- read.csv("washington.csv")
 
+# Add new column City to all files and put respectrive city name in
 ny$City <- "New York City"
 ch$City <- "Chicago"
 wa$City <- "Washington"
 
+# Combine the 3 City files into 1 bikeshare file
 bikeshare = ny %>% full_join(ch)
 bikeshare = bikeshare %>% full_join(wa)
 
@@ -32,11 +37,12 @@ ggplot(aes(x=Start.Hour, fill=City), data=bikeshare) +
   labs(x = "Hour of Rental Start Time", y = "Number of Bike Rides for each City") +
   scale_x_continuous(breaks = 0:23)
 
-ggplot(aes(x=Start.Hour, fill=City), data=bikeshare) +
-  geom_density(color = "black") +
-  ggtitle("Number of Bike Rides per City and Rental Start Time Hour") +
-  labs(x = "Hour of Rental Start Time", y = "Number of Bike Rides for each City") +
-  facet_wrap("City")
+# Remove unnecessary visualization
+# ggplot(aes(x=Start.Hour, fill=City), data=bikeshare) +
+#  geom_density(color = "black") +
+#  ggtitle("Number of Bike Rides per City and Rental Start Time Hour") +
+#  labs(x = "Hour of Rental Start Time", y = "Number of Bike Rides for each City") +
+#  facet_wrap("City")
 
 
 # Visualization 2: Average Rides per City over time
