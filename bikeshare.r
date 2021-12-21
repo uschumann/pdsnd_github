@@ -1,4 +1,5 @@
 # --------- R Script for bikeshare data analysis ------
+# --------- based on Udacity Nanodegree Project -------
 # load further R packages
 library(dplyr)
 library (ggplot2)
