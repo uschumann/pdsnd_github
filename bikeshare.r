@@ -22,7 +22,6 @@ bikeshare$Start.Hour <- hour(ymd_hms(bikeshare$Start.Time))
 bikeshare$Start.Day <- weekdays(ymd_hms(bikeshare$Start.Time))
 bikeshare$Start.Month <- month(ymd_hms(bikeshare$Start.Time))
 bikeshare$Start.Week <- week(ymd_hms(bikeshare$Start.Time))
-# bikeshare$Start.Month <- month(ymd_hms(bikeshare$Start.Time), label = TRUE)
 bikeshare$DayOfYear <- yday(ymd_hms(bikeshare$Start.Time))
 
 # Visualization 1: Number of Rides per City and Weekday
@@ -99,9 +98,9 @@ ggplot(bikeshare, aes(x=City, fill=Start.Day)) +
     rowwise() %>%
     mutate(AVG_per_hour = mean(c(Chicago, `New York City`, Washington)))
   stats_viz_1
-  # ---------- end of Stats for Viz 1 -------
+  # ---------- End of Statistics for Visualization 1 -------
 
-  # -----------Statistics for Viz 2 ----------
+  # -----------Start of Statistics for Visualization 2 ------
 # Overall average (6 months) for each city and for all cities
 # Create pre-calculation
 chi_6months_avg <- bikeshare %>%
@@ -131,9 +130,9 @@ AVG_Overview_6months <- AVG_Overview_6months %>%
   rowwise() %>%
   mutate(all_6months_avg)
 AVG_Overview_6months
-# ---------- end of Stats for Viz 2 --------
+# ---------- End of Statistics for Visualization 2 -----
 
-# -----------Statistics for Viz 3 ----------
+# -----------Start of Statistics for Visualization 3 -----
 # Average number of Bike rides per week day for all Cities together
 avg_per_weekday <- bikeshare %>%
   group_by(Start.Day) %>%
@@ -141,4 +140,4 @@ avg_per_weekday <- bikeshare %>%
 avg_per_weekday <- avg_per_weekday %>%
   arrange(desc(Average_per_Weekday))
 avg_per_weekday
-# ---------- end of Stats for Viz 3 --------
+# ---------- End of Statistics for Visualization 3 -----
