@@ -1,5 +1,7 @@
 # --------- R Script for bikeshare data analysis ------
 # --------- based on Udacity Nanodegree Project -------
+
+# --------- Start Data Preparation section ------------
 # load further R packages
 library(dplyr)
 library (ggplot2)
@@ -30,7 +32,9 @@ bikeshare$Start.Month <- month(ymd_hms(bikeshare$Start.Time))
 bikeshare$Start.Week <- week(ymd_hms(bikeshare$Start.Time))
 # bikeshare$Start.Month <- month(ymd_hms(bikeshare$Start.Time), label = TRUE)
 bikeshare$DayOfYear <- yday(ymd_hms(bikeshare$Start.Time))
+# --------- End of Data Preparation section ----
 
+# --------- Start of Visualization section ------
 # Visualization 1: Number of Rides per City and Weekday
 ggplot(aes(x=Start.Hour, fill=City), data=bikeshare) +
   geom_bar(position = "dodge", color = "black") +
@@ -71,3 +75,4 @@ ggplot(bikeshare, aes(x=City, fill=Start.Day)) +
   geom_bar(position = "dodge", color = "black") +
   ggtitle("Overview of Bike Rides per City and Week Day") +
   labs(x = "City", y = "Number of Bike Rides per Week day")
+# ----------- End of Visualization section -------
