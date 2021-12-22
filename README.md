@@ -3,6 +3,7 @@
 ### Date created
 December 20th, 2021
 Updated on Dec 21st, 2021
+Updated on Dec 22nd, 2021
 
 ### Project Title
 Investigation of bikeshare data from 3 US cities.
@@ -10,9 +11,15 @@ Investigation of bikeshare data from 3 US cities.
 ### Description
 In order to practice with R programming, several data
 investigations have been applied.
+
 Based on 3 given files, data was merged into a single
 file. Data preparation done in R. 3 Visualizations
 created to answer 3 interesting questions.
+
+Visualizations created for:
+Number of Rides per Hour and City
+Average Rides per City over time
+Number of Rides per City and Weekday
 
 ### Files used
 chicago.csv
