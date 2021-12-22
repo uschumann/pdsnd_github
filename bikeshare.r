@@ -64,3 +64,81 @@ ggplot(bikeshare, aes(x=City, fill=Start.Day)) +
   geom_bar(position = "dodge", color = "black") +
   ggtitle("Overview of Bike Rides per City and Week Day") +
   labs(x = "City", y = "Number of Bike Rides per Week day")
+
+  # ------------ Statistics for Viz 1 ---------
+  # Create pre-tables
+  chicago <- bikeshare %>%
+            group_by(Start.Hour, City) %>%
+            summarize(Chicago = n()) %>%
+            filter(City == "Chicago")
+
+  newyork <- bikeshare %>%
+    group_by(Start.Hour, City) %>%
+    summarize("New York City" = n()) %>%
+    filter(City == "New York City")
+
+  washington <- bikeshare %>%
+    group_by(Start.Hour, City) %>%
+    summarize("Washington" = n()) %>%
+    filter(City == "Washington")
+
+  overall <- bikeshare %>%
+    group_by(Start.Hour) %>%
+    summarize(all_Cities = n())
+
+  # Join pre-tables
+  stats_viz_1 = chicago %>% left_join(newyork, by = "Start.Hour")
+  stats_viz_1 = stats_viz_1 %>% left_join(washington, by = "Start.Hour")
+  stats_viz_1 = stats_viz_1 %>% left_join(overall, by = "Start.Hour")
+
+  # removing unnecessary column
+  stats_viz_1 <- select(stats_viz_1, -c(City.x, City.y, City))
+
+  # Add additional column and calculate mean value for each hour
+  stats_viz_1 <- stats_viz_1 %>%
+    rowwise() %>%
+    mutate(AVG_per_hour = mean(c(Chicago, `New York City`, Washington)))
+  stats_viz_1
+  # ---------- end of Stats for Viz 1 -------
+
+  # -----------Statistics for Viz 2 ----------
+# Overall average (6 months) for each city and for all cities
+# Create pre-calculation
+chi_6months_avg <- bikeshare %>%
+  filter(City == "Chicago") %>%
+  summarize(chi_6months_avg = mean(Trip.Duration))
+
+nyc_6months_avg <- bikeshare %>%
+  filter(City == "New York City") %>%
+  summarize(nyc_6months_avg = mean(Trip.Duration))
+
+was_6months_avg <- bikeshare %>%
+  filter(City == "Washington") %>%
+  summarize(was_6months_avg = mean(Trip.Duration))
+
+all_6months_avg <- bikeshare %>%
+  summarize(all_6months_avg = mean(Trip.Duration))
+
+# Combine pre-calculations
+AVG_Overview_6months <- chi_6months_avg
+AVG_Overview_6months <- AVG_Overview_6months %>%
+  rowwise() %>%
+  mutate(nyc_6months_avg)
+AVG_Overview_6months <- AVG_Overview_6months %>%
+  rowwise() %>%
+  mutate(was_6months_avg)
+AVG_Overview_6months <- AVG_Overview_6months %>%
+  rowwise() %>%
+  mutate(all_6months_avg)
+AVG_Overview_6months
+# ---------- end of Stats for Viz 2 --------
+
+# -----------Statistics for Viz 3 ----------
+# Average number of Bike rides per week day for all Cities together
+avg_per_weekday <- bikeshare %>%
+  group_by(Start.Day) %>%
+  summarize(Average_Rides_per_Weekday = mean(n()))
+avg_per_weekday <- avg_per_weekday %>%
+  arrange(desc(Average_per_Weekday))
+avg_per_weekday
+# ---------- end of Stats for Viz 3 --------
