@@ -35,7 +35,7 @@ bikeshare$DayOfYear <- yday(ymd_hms(bikeshare$Start.Time))
 # --------- End of Data Preparation section ----
 
 # --------- Start of Visualization section ------
-# Visualization 1: Number of Rides per City and Weekday
+# Visualization 1: Number of Rides per Hour and City
 ggplot(aes(x=Start.Hour, fill=City), data=bikeshare) +
   geom_bar(position = "dodge", color = "black") +
   ggtitle("Number of Bike Rides per City and Rental Start Time Hour") +
